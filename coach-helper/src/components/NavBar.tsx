@@ -13,8 +13,8 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 
 const pages = ['Sessions', 'Runners'];
-const settingsLoggedIn = ['Profile', 'Dashboard', 'Logout'];
-const settingsLoggedOut = ['Login']
+const settingsLogIn = ['Profile', 'Dashboard', 'Logout'];
+
 
 const NavBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
@@ -126,9 +126,9 @@ const NavBar = () => {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settingsLoggedOut.map((settingsLoggedOut) => (
-                <MenuItem key={settingsLoggedOut} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{settingsLoggedOut}</Typography>
+              {settingsLogIn.map((settingsLogIn) => (
+                <MenuItem key={settingsLogIn} onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center">{settingsLogIn}</Typography>
                 </MenuItem>
               ))}
             </Menu>
