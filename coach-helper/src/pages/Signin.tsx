@@ -11,7 +11,18 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
+import NavBar from '../components/NavBar';
+import SvgIcon, { SvgIconProps } from '@mui/material/SvgIcon';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+
+function HomeIcon(props: SvgIconProps) {
+  return (
+    <SvgIcon {...props}>
+      <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
+    </SvgIcon>
+  );
+}
 
 function Copyright(props: any) {
   return (
@@ -40,6 +51,7 @@ export default function SignIn() {
   };
 
   return (
+    <React.Fragment>
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
@@ -51,10 +63,11 @@ export default function SignIn() {
             alignItems: 'center',
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-            <LockOutlinedIcon />
-          </Avatar>
-          <Typography component="h1" variant="h5">
+          <Button href="/">
+            <HomeIcon color='primary' sx={{fontSize: 60}} />
+          </Button>
+          <br />
+          <Typography component="h1" variant="h5" >
             Sign in
           </Typography>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
@@ -107,5 +120,6 @@ export default function SignIn() {
         <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>
     </ThemeProvider>
+    </React.Fragment>
   );
 }

@@ -7,13 +7,12 @@ import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
+import SvgIcon, { SvgIconProps } from '@mui/material/SvgIcon';
 
 const pages = ['Sessions', 'Runners'];
-const settingsLogIn = ['Profile', 'Dashboard', 'Logout'];
+
 
 
 const NavBar = () => {
@@ -22,9 +21,6 @@ const NavBar = () => {
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
-  };
-  const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElUser(event.currentTarget);
   };
 
   const handleCloseNavMenu = () => {
@@ -36,6 +32,7 @@ const NavBar = () => {
   };
 
   return (
+
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
@@ -90,7 +87,7 @@ const NavBar = () => {
             component="div"
             sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
           >
-            LOGO
+            COACHING HELPER
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
@@ -103,13 +100,7 @@ const NavBar = () => {
               </Button>
             ))}
           </Box>
-
           <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="avatar picture" src="/" />
-              </IconButton>
-            </Tooltip>
             <Menu
               sx={{ mt: '45px' }}
               id="menu-appbar"
@@ -126,16 +117,17 @@ const NavBar = () => {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settingsLogIn.map((settingsLogIn) => (
-                <MenuItem key={settingsLogIn} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{settingsLogIn}</Typography>
-                </MenuItem>
-              ))}
             </Menu>
+
+            <Button color="inherit" href="/signin">
+              Sign In
+            </Button>
+            
           </Box>
         </Toolbar>
       </Container>
     </AppBar>
+
   );
 };
 export default NavBar;

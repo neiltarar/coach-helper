@@ -1,16 +1,19 @@
 import React from 'react';
 import * as ReactDOM from 'react-dom';
-import {BrowserRouter} from 'react-router-dom';
 import NavBar from './components/NavBar';
-import SignIn from './pages/Login';
+import { HomePage } from './pages/home';
+import SignIn from './pages/Signin';
+import { BrowserRouter, Link, Routes, Route } from "react-router-dom";
 import './App.css';
-
 
 function App() {
   return (
     <React.Fragment> 
-      <BrowserRouter>     
-        <SignIn />
+      <BrowserRouter>  
+        <Routes>
+          <Route path='/' element={<HomePage />}></Route>
+          <Route path='/signin' element={<SignIn />}></Route>
+        </Routes>
       </BrowserRouter>
     </React.Fragment>
   );
