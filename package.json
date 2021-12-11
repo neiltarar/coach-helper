@@ -1,0 +1,23 @@
+{
+  "name": "coach-helper",
+  "version": "1.0.0",
+  "description": "A Running Coach Helper that helps trainers to shape traninig programs, track runners' progress and much more ...",
+  "main": "server.js",
+  "repository": "https://github.com/aniltarar/coach-helper",
+  "author": "Neil Tarar",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.23.0",
+    "bcrypt": "^5.0.1",
+    "body-parser": "^1.19.1",
+    "connect-pg-simple": "^7.0.0",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "express-router": "^0.0.1",
+    "express-session": "^1.17.2",
+    "nodemon": "^2.0.14",
+    "package.json": "^2.0.1",
+    "path": "^0.12.7",
+    "pg": "^8.7.1"
+  }
+}

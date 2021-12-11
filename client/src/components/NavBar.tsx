@@ -119,7 +119,7 @@ const NavBar = () => {
             >
             </Menu>
 
-            <Button color="inherit" href="/signin">
+            <Button color="inherit" href="/sign-in">
               Sign In
             </Button>
             
