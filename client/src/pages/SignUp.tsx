@@ -8,6 +8,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import axios from 'axios';
+import { useState } from 'react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 function Copyright(props: any) {
@@ -16,9 +17,8 @@ function Copyright(props: any) {
       {'Copyright © '}
       <Link color="inherit" href="https://www.neil-tarar.com/">
         Neil Tarar
-      </Link>{' '}
+      </Link>
       {new Date().getFullYear()}
-      {'.'}
     </Typography>
   );
 }
@@ -26,6 +26,20 @@ function Copyright(props: any) {
 const theme = createTheme();
 
 export default function SignUp() {
+  const [signUpComplete, setSignUpComplete] = useState(false)
+
+  const handleChange = (event: React.FormEvent<HTMLFormElement>) => {
+    const data = new FormData(event.currentTarget);
+    const firstName = data.get('firstName');
+    const lastName = data.get('lastName');
+    const email = data.get('email');
+    const password = data.get('password');
+    if(firstName === '' || lastName === '' || email === '' || password === ''){
+    setSignUpComplete(false);
+  }else{
+    setSignUpComplete(true);
+  }}
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -33,7 +47,8 @@ export default function SignUp() {
     const lastName = data.get('lastName');
     const email = data.get('email');
     const password = data.get('password');
-    // eslint-disable-next-line no-console
+    
+
     axios.post('http://localhost:3001/api/users/sign-up', 
       {
         firstName: firstName, 
@@ -41,6 +56,7 @@ export default function SignUp() {
         email: email, 
         password: password
       });
+    console.log(firstName)
   };
 
   return (
@@ -58,10 +74,10 @@ export default function SignUp() {
           <Typography component="h1" variant="h5">
             Sign up
           </Typography>
-          <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+          <Box component="form" noValidate onSubmit={handleSubmit} onChange={handleChange} sx={{ mt: 3 }}>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
-                <TextField
+                <TextField 
                   autoComplete="given-name"
                   name="firstName"
                   required
@@ -103,17 +119,29 @@ export default function SignUp() {
                 />
               </Grid>
             </Grid>
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-            >
-              Sign Up
-            </Button>
+            {signUpComplete 
+            ? <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            sx={{ mt: 3, mb: 2 }}
+          >
+            Sign Up
+          </Button> 
+          : <Button
+          disabled
+          type="submit"
+          fullWidth
+          variant="contained"
+          sx={{ mt: 3, mb: 2 }}
+        >
+          Sign Up
+        </Button> 
+          }
+            
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link href="/sign-in" variant="body2">
                   Already have an account? Sign in
                 </Link>
               </Grid>

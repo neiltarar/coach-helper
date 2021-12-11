@@ -9,7 +9,6 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
-import SvgIcon, { SvgIconProps } from '@mui/material/SvgIcon';
 
 const pages = ['Sessions', 'Runners'];
 
