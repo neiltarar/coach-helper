@@ -58,13 +58,17 @@ export default function SignUp() {
     const email = data.get("email");
     const password = data.get("password");
 
-    axios.post("http://localhost:3001/api/users/sign-up", {
-      firstName: firstName,
-      lastName: lastName,
-      email: email,
-      password: password,
-    });
-    window.location.href = "/";
+    axios
+      .post("http://localhost:3001/api/users/sign-up", {
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        password: password,
+      })
+      .then((res) => {
+        console.log(res);
+        window.location.href = "/";
+      });
   };
 
   return (

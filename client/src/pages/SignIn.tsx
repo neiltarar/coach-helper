@@ -54,7 +54,10 @@ export default function SignIn() {
         password: password,
       })
       .then((res) => {
-        console.log(res);
+        console.log(res.data.login);
+        if (res.data.login) {
+          window.location.href = "/";
+        }
       });
   };
 

@@ -17,8 +17,15 @@ usersController.post("/sign-in", (req, res) => {
 
       const isValidPassword = password_check(password, password_hash);
       console.log("pasword validity: ", isValidPassword);
+      if (isValidPassword) {
+        req.session.username = email;
+        req.session.userID = user_id;
+        res.status(200).json({ login: true });
+      } else {
+        res.status(403).json({ login: false });
+      }
     } else {
-      console.log("user doesn't exist");
+      res.status(403).json({ login: false });
     }
     // res is our sql enquiry to see if there is a user with the
     // same email and password, which comes as a list,
