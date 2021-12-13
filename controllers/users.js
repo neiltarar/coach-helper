@@ -1,15 +1,47 @@
+const userDB = require("../models/users");
+const bcrypt = require("bcrypt");
 const express = require("express");
 const usersController = express.Router();
 
 usersController.post("/sign-in", (req, res) => {
-  console.log(req.body);
-  res.json({ received: "OK" });
+  const password_hash = (passwordPlain, passwordHash) => {
+    return bcrypt.compareSync(passwordPlain, passwordHash);
+  };
+  const { email, password } = req.body;
+
+  userDB.getUser(email).then((response) => {
+    const password_hash = response[0].password_hash;
+    const user_id = response[0].user_id;
+    // res is our sql enquiry to see if there is a user with the
+    // same email and password, which comes as a list,
+    // therefore if its lengts is zero it means that there is no match
+    if (response.length > 0) {
+      console.log("user exists");
+    } else {
+      console.log("user doesn't exist");
+    }
+  });
 });
 
 usersController.post("/sign-up", (req, res) => {
+  // Create a function to hash users password
+  const generateHash = (password) => {
+    return bcrypt.hashSync(password, bcrypt.genSaltSync(10), null);
+  };
+
+  // Collect all the user information from the axios post request
   const { firstName, lastName, email, password } = req.body;
-  console.log(req.body);
-  res.json({ received: "OK" });
+
+  // Hash user's password with the function created above
+  const password_hash = generateHash(password);
+
+  // Put all the information in the DB
+  userDB
+    .createUser(firstName, lastName, email, password_hash)
+    .then((response) => {
+      res.status(201).json(response);
+      console.log(`User ${email} added successfully.`);
+    });
 });
 
 module.exports = usersController;
