@@ -4,22 +4,25 @@ const express = require("express");
 const usersController = express.Router();
 
 usersController.post("/sign-in", (req, res) => {
-  const password_hash = (passwordPlain, passwordHash) => {
-    return bcrypt.compareSync(passwordPlain, passwordHash);
-  };
   const { email, password } = req.body;
 
   userDB.getUser(email).then((response) => {
-    const password_hash = response[0].password_hash;
-    const user_id = response[0].user_id;
-    // res is our sql enquiry to see if there is a user with the
-    // same email and password, which comes as a list,
-    // therefore if its lengts is zero it means that there is no match
     if (response.length > 0) {
-      console.log("user exists");
+      const password_check = (passwordPlain, passwordHash) => {
+        return bcrypt.compareSync(passwordPlain, passwordHash);
+      };
+
+      const password_hash = response[0].password_hash;
+      const user_id = response[0].user_id;
+
+      const isValidPassword = password_check(password, password_hash);
+      console.log("pasword validity: ", isValidPassword);
     } else {
       console.log("user doesn't exist");
     }
+    // res is our sql enquiry to see if there is a user with the
+    // same email and password, which comes as a list,
+    // therefore if its lengts is zero it means that there is no match
   });
 });
 
