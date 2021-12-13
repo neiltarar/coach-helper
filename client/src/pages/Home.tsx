@@ -16,40 +16,21 @@ const Heading = styled(Paper)(({ theme }) => ({
 export function HomePage() {
     return (
         <React.Fragment>
-           
-                    <Box id='main-page' display="grid" gridTemplateColumns="repeat(12, 1fr)" sx={{ m:"20px"}} gap={2} >
-                        <Box gridColumn="span 12">
-                            <Heading>
-                            <Typography variant="h4" component="div" gutterBottom>
-                                Coach Helper App
-                            </Typography>
-                            </Heading>
-                                <p>This app is aiming to help running coaches to choose and implement different running 
-                                    sessions based on the weather conditions and the set of runners you are training.
-                                </p>
-                            
-                        </Box>
-                       
-                        <Box gridColumn="span 4">
-                            <p>xs=4</p>
-                        </Box>
-                        <Box gridColumn="span 8">
-                            <p>xs=8</p>
-                        </Box>
-                        <Box gridColumn="span 8">
-                            <p>xs=8</p>
-                        </Box>
-                        <Box gridColumn="span 4">
-                            <p>xs=4</p>
-                        </Box>
-                        <Box gridColumn="span 8">
-                            <p>xs=8</p>
-                        </Box>
-                        <Box gridColumn="span 4">
-                            <p>xs=4</p>
-                        </Box>
-                    </Box>
-
+            <Box id='main-page' display="grid" gridTemplateColumns="repeat(12, 1fr)" sx={{ m:"20px"}} gap={2} >
+                <Box gridColumn="span 4">
+                    <Heading>
+                    <Typography variant="h4" component="div" gutterBottom>
+                        Coach Helper App
+                    </Typography>
+                    </Heading>
+                </Box>
+                <Box gridColumn='span 8'>
+                    <p>
+                        This app is aiming to help running coaches to choose and implement different running 
+                        sessions based on the weather conditions and the set of runners you are training.
+                    </p>
+                </Box>
+            </Box>
         </React.Fragment>
     )
 }
