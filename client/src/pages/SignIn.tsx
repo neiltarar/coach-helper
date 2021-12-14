@@ -1,5 +1,5 @@
 import * as React from "react";
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
@@ -53,9 +53,9 @@ export default function SignIn() {
         email: email,
         password: password,
       })
-      .then((res) => {
-        console.log(res.data.login);
-        if (res.data.login) {
+      .then((res: AxiosResponse) => {
+        const data = res.data as { login: boolean };
+        if (data.login) {
           window.location.href = "/";
         }
       });
