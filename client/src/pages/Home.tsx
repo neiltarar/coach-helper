@@ -26,7 +26,7 @@ export function HomePage() {
               fontSize={"10pt"}
               component='div'
               gutterBottom>
-              Coach Helper App
+              Coach Helper
             </Typography>
           </Heading>
         </Box>

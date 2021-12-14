@@ -10,7 +10,7 @@ import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 
-const pages = ["Sessions", "Runners"];
+const pages = ["sessions", "runners"];
 
 const NavBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
@@ -42,7 +42,7 @@ const NavBar = () => {
             component='div'
             sx={{ mr: 2, display: { xs: "none", md: "flex" } }}>
             <Button color='inherit' href='/'>
-              COACHING HELPER
+              COACH HELPER
             </Button>
           </Typography>
 
@@ -75,7 +75,11 @@ const NavBar = () => {
               }}>
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign='center'>{page}</Typography>
+                  <Typography textAlign='center'>
+                    <Button color='inherit' href={`/${page}`}>
+                      {page}
+                    </Button>
+                  </Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -86,7 +90,7 @@ const NavBar = () => {
             component='div'
             sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <Button color='inherit' href='/'>
-              COACHING HELPER
+              COACH HELPER
             </Button>
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
@@ -94,7 +98,8 @@ const NavBar = () => {
               <Button
                 key={page}
                 onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: "white", display: "block" }}>
+                sx={{ my: 2, color: "white", display: "block" }}
+                href={`/${page}`}>
                 {page}
               </Button>
             ))}
