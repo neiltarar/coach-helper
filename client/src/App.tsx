@@ -24,7 +24,7 @@ function App() {
           <Route path='/sessions' element={<SessionsTable />}></Route>
         </Routes>
       </BrowserRouter>
-      <Copyright sx={{ mt: 8, mb: 4 }} />
+      <Copyright sx={{ margin: 4 }} />
     </React.Fragment>
   );
 }
