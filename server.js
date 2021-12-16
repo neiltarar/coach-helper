@@ -8,9 +8,11 @@ const bodyParser = require("body-parser");
 
 // Import All Controllers
 const usersController = require("./controllers/users");
+const trainingSessionsController = require("./controllers/trainingSessions");
 
 // Connect to the DB and create session Table
 const connectPgSimple = require("connect-pg-simple");
+const req = require("express/lib/request");
 const pgSession = connectPgSimple(expressSession);
 
 // creating 24 hours from milliseconds
@@ -35,6 +37,7 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, "./client/build")));
 
 app.use("/api/users/", usersController);
+app.use("/api/training-sessions", trainingSessionsController);
 
 app.use("/", (req, res) => {
   res.sendFile(path.join(__dirname, "./client/build/index.html"));
