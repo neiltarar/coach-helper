@@ -1,5 +1,6 @@
 const sessionAuth = require("../middleware/sessionAuth");
 const express = require("express");
+
 const trainingSessionsDB = require("../models/trainingSessions");
 const trainingSessionsController = express.Router();
 
@@ -12,6 +13,7 @@ trainingSessionsController.get("/", (req, res) => {
 trainingSessionsController.post("/add-session", (req, res) => {
   trainingSessionsDB
     .addTrainingSession(
+      req.body.date,
       req.body.type,
       req.body.location,
       req.body.session,

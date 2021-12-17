@@ -45,3 +45,20 @@ button {
   overflow: hidden;
   outline: none;
 }
+
+input[type="date"] {
+  max-width: 60px;
+  font-size: 8pt;
+}
+
+#rain {
+  background-color: red;
+}
+
+#check-weather {
+  padding: 12px 28px;
+  border-radius: 8px;
+  background-color: white;
+  color: rgb(33, 143, 247);
+  border: 2px solid #1573ff; /* Green */
+}

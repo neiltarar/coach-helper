@@ -8,6 +8,7 @@ import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
 import AddIcon from "../components/AddIcon";
 import DeleteIcon from "../components/DeleteIcon";
+import SimpleButton from "../components/Button";
 
 const Item = styled(Paper)(({ theme }) => ({
   ...theme.typography.body2,
@@ -19,7 +20,28 @@ const Item = styled(Paper)(({ theme }) => ({
 export default function SessionsTable() {
   const [trainingSessions, setTrainingSessions] = useState([]);
   const [deleteID, setDeleteID] = useState([]);
+  const [days, setDays] = useState([]);
+  const [condition, setCondition] = useState([]);
+  const apiKey = process.env.REACT_APP_APIKEY;
 
+  const handleWeatherCheck = async (e) => {
+    e.preventDefault();
+    const url = ` http://api.weatherapi.com/v1/forecast.json?key=65c268e786e047e79dd195717211712&q=Sydney&days=3`;
+    const req = axios.get(url);
+    const res = await req;
+    const daysArray = [];
+    const conditionArray = [];
+
+    res.data.forecast.forecastday.forEach((element) => {
+      daysArray.push(element.date);
+    });
+    res.data.forecast.forecastday.forEach((element) => {
+      conditionArray.push(element.day.condition.code);
+    });
+
+    setCondition(conditionArray);
+    setDays(daysArray);
+  };
   useEffect(() => {
     async function fetchData() {
       const response = await axios.get(
@@ -28,14 +50,15 @@ export default function SessionsTable() {
 
       setTrainingSessions(response.data);
     }
+
     fetchData();
   });
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log("clicked");
     const data = new FormData(event.currentTarget);
     const payload = {
+      date: data.get("date"),
       session: data.get("session"),
       type: data.get("type"),
       info: data.get("info"),
@@ -85,7 +108,16 @@ export default function SessionsTable() {
         gridTemplateColumns='repeat(12, 1fr)'
         sx={{ m: "40px", borderBottom: 2 }}
         gap={2}>
-        <Box gridColumn='span 3'>
+        <Box gridColumn='span 1'>
+          <Typography
+            fontWeight={"900"}
+            fontSize={"8pt"}
+            component='div'
+            gutterBottom>
+            Date
+          </Typography>
+        </Box>
+        <Box gridColumn='span 2'>
           <Typography
             fontWeight={"900"}
             fontSize={"8pt"}
@@ -140,7 +172,7 @@ export default function SessionsTable() {
         gap={2}>
         {trainingSessions.map((session) => (
           <>
-            <Box gridColumn='span 3'>
+            <Box gridColumn='span 1'>
               <Typography
                 fontWeight={"normal"}
                 fontSize={"8pt"}
@@ -150,6 +182,24 @@ export default function SessionsTable() {
                   value={session.session_id}
                   onChange={handleCheckBoxChange}
                 />
+                {days[0] === session.date &&
+                (condition[0] === 1063 ||
+                  condition[0] === 1183 ||
+                  condition[0] === 1186 ||
+                  condition[0] === 1180 ||
+                  condition[0] === 1189 ||
+                  condition[0] === 1192) ? (
+                  <div id='rain'>{session.date} Chance Of Rain</div>
+                ) : (
+                  <div>{session.date}</div>
+                )}
+              </Typography>
+            </Box>
+            <Box gridColumn='span 2'>
+              <Typography
+                fontWeight={"normal"}
+                fontSize={"8pt"}
+                component='div'>
                 {session.name}
               </Typography>
             </Box>
@@ -189,8 +239,24 @@ export default function SessionsTable() {
         ))}
       </Box>
 
-      <Box component='form' onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+      <Box
+        component='form'
+        onSubmit={handleSubmit}
+        noValidate
+        sx={{ mt: 1, mx: 3 }}>
         <Grid container spacing={1}>
+          <Grid item xs={2}>
+            <br></br>
+            <br></br>
+            <input
+              type='date'
+              id='date'
+              name='date'
+              label='date'
+              placeholder=''
+              required
+            />
+          </Grid>
           <Grid item xs={2}>
             <TextField
               required
@@ -219,7 +285,7 @@ export default function SessionsTable() {
               variant='standard'
             />
           </Grid>
-          <Grid item xs={3}>
+          <Grid item xs={2}>
             <TextField
               required
               margin='normal'
@@ -247,7 +313,8 @@ export default function SessionsTable() {
               variant='standard'
             />
           </Grid>
-          <Grid item xs={3}>
+          <br></br>
+          <Grid item xs={2}>
             <TextField
               required
               margin='normal'
@@ -261,18 +328,26 @@ export default function SessionsTable() {
               variant='standard'
             />
           </Grid>
-        </Grid>
-        <Grid item xs>
-          <button type='submit'>
-            <AddIcon />
-          </button>
+          <Grid container spacing={2}>
+            <Grid item xs={1}></Grid>
+            <Grid item xs={2}></Grid>
+            <Grid item xs={3}>
+              <button id='check-weather' onClick={handleWeatherCheck}>
+                check weather
+              </button>
+            </Grid>
+            <Grid item xs={6}>
+              <button type='submit'>
+                <AddIcon />
+              </button>
+              <button onClick={handleDeleteButton}>
+                <DeleteIcon />
+              </button>
+            </Grid>
+          </Grid>
         </Grid>
       </Box>
-      <Grid item xs>
-        <button onClick={handleDeleteButton}>
-          <DeleteIcon />
-        </button>
-      </Grid>
+      <Box sx={{ flexGrow: 1 }}></Box>
     </React.Fragment>
   );
 }
