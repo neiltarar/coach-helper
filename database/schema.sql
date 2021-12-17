@@ -7,6 +7,7 @@ password VARCHAR(100)
 
 CREATE TABLE trainingSessions (
     session_id serial PRIMARY KEY,
+    date date,
     type VARCHAR(20),
     location VARCHAR(20),
     name VARCHAR(20),

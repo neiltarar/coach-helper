@@ -18,6 +18,7 @@ const Item = styled(Paper)(({ theme }) => ({
 
 export default function SessionsTable() {
   const [trainingSessions, setTrainingSessions] = useState([]);
+  const [deleteID, setDeleteID] = useState([]);
 
   useEffect(() => {
     async function fetchData() {
@@ -32,8 +33,48 @@ export default function SessionsTable() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    console.log("clicked");
     const data = new FormData(event.currentTarget);
-    console.log(data);
+    const payload = {
+      session: data.get("session"),
+      type: data.get("type"),
+      info: data.get("info"),
+      reps: data.get("reps"),
+      location: data.get("location"),
+    };
+    axios.post(
+      `http://localhost:3001/api/training-sessions/add-session`,
+      payload
+    );
+  };
+
+  const handleCheckBoxChange = (event) => {
+    const status = event.target.checked;
+    const trainingSessionID = event.target.value;
+    if (status === true) {
+      setDeleteID([...deleteID, trainingSessionID]);
+      console.log(deleteID);
+    } else if (status === false) {
+      if ([...deleteID].includes(trainingSessionID)) {
+        setDeleteID(
+          [...deleteID].splice([...deleteID].indexOf(trainingSessionID), 1)
+        );
+      }
+    }
+    console.log(status, trainingSessionID);
+  };
+
+  const handleDeleteButton = async (event) => {
+    event.preventDefault();
+    const id = deleteID;
+    try {
+      await axios.delete(
+        `http://localhost:3001/api/training-sessions/${id}/remove`
+      );
+      console.log("session removed");
+    } catch (error) {
+      console.log("session not removed");
+    }
   };
 
   return (
@@ -104,6 +145,11 @@ export default function SessionsTable() {
                 fontWeight={"normal"}
                 fontSize={"8pt"}
                 component='div'>
+                <input
+                  type='checkbox'
+                  value={session.session_id}
+                  onChange={handleCheckBoxChange}
+                />
                 {session.name}
               </Typography>
             </Box>
@@ -212,12 +258,16 @@ export default function SessionsTable() {
           </Grid>
         </Grid>
         <Grid item xs>
-          <AddIcon />
-        </Grid>
-        <Grid item xs>
-          <DeleteIcon />
+          <button type='submit'>
+            <AddIcon />
+          </button>
         </Grid>
       </Box>
+      <Grid item xs>
+        <button onClick={handleDeleteButton}>
+          <DeleteIcon />
+        </button>
+      </Grid>
     </React.Fragment>
   );
 }
