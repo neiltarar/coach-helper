@@ -11,28 +11,12 @@ import axios from "axios";
 import { useState } from "react";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
-function Copyright(props: any) {
-  return (
-    <Typography
-      variant='body2'
-      color='text.secondary'
-      align='center'
-      {...props}>
-      {"Copyright © "}
-      <Link color='inherit' href='https://www.neil-tarar.com/'>
-        Neil Tarar
-      </Link>
-      {new Date().getFullYear()}
-    </Typography>
-  );
-}
-
 const theme = createTheme();
 
 export default function SignUp() {
   const [signUpComplete, setSignUpComplete] = useState(false);
 
-  const handleChange = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleChange = (event) => {
     const data = new FormData(event.currentTarget);
     const firstName = data.get("firstName");
     const lastName = data.get("lastName");
@@ -50,7 +34,7 @@ export default function SignUp() {
     }
   };
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const firstName = data.get("firstName");

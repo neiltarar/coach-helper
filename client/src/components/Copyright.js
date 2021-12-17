@@ -1,16 +1,9 @@
-import Box, { BoxProps } from "@mui/material/Box";
+import * as React from "react";
 import Typography from "@mui/material/Typography";
-import { styled } from "@mui/material/styles";
-import Paper from "@mui/material/Paper";
 import Link from "@mui/material/Link";
 import CardMedia from "@mui/material/CardMedia";
 
-import * as React from "react";
-import Button from "@mui/material/Button";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
-
-export default function Copyright(props: any) {
+export default function Copyright(props) {
   return (
     <div>
       <Typography
@@ -21,16 +14,15 @@ export default function Copyright(props: any) {
         <br />
         <CardMedia
           component='img'
-          height='180'
+          height='100'
           image='./images/footerImage.jpeg'
         />
         <br />
         {"Copyright © "}
         <Link color='inherit' href='https://www.neil-tarar.com/'>
           Neil Tarar
-        </Link>{" "}
+        </Link>
         {new Date().getFullYear()}
-        {"."}
       </Typography>
     </div>
   );

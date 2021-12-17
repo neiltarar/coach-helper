@@ -5,7 +5,7 @@ const usersController = express.Router();
 
 usersController.post("/sign-in", (req, res) => {
   const { email, password } = req.body;
-
+  console.log(req.body);
   userDB.getUser(email).then((response) => {
     if (response.length > 0) {
       const password_check = (passwordPlain, passwordHash) => {
