@@ -1,8 +1,9 @@
+import * as React from "react";
 import Typography from "@mui/material/Typography";
 import Link from "@mui/material/Link";
 import CardMedia from "@mui/material/CardMedia";
 
-export default function Copyright(props: any) {
+export default function Copyright(props) {
   return (
     <div>
       <Typography
@@ -20,9 +21,8 @@ export default function Copyright(props: any) {
         {"Copyright © "}
         <Link color='inherit' href='https://www.neil-tarar.com/'>
           Neil Tarar
-        </Link>{" "}
+        </Link>
         {new Date().getFullYear()}
-        {"."}
       </Typography>
     </div>
   );

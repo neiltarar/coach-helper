@@ -4,7 +4,6 @@ import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import axios from "axios";
 import Typography from "@mui/material/Typography";
-import { Session } from "inspector";
 
 const Item = styled(Paper)(({ theme }) => ({
   ...theme.typography.body2,
@@ -17,7 +16,7 @@ export default function SessionsTable() {
   const [sessions, setSessions] = useState({});
   axios.get("http://localhost:3001/api/training-sessions").then((res) => {
     // console.log(res.data);
-    const payload = res.data as { location: any };
+    const payload = res.data;
     setSessions(payload);
   });
 
