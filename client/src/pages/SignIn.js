@@ -1,5 +1,5 @@
 import * as React from "react";
-import axios, { AxiosResponse } from "axios";
+import axios from "axios";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
@@ -10,13 +10,13 @@ import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import SvgIcon, { SvgIconProps } from "@mui/material/SvgIcon";
+
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 const theme = createTheme();
 
 export default function SignIn() {
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const email = data.get("email");
@@ -28,8 +28,8 @@ export default function SignIn() {
         email: email,
         password: password,
       })
-      .then((res: AxiosResponse) => {
-        const data = res.data as { login: boolean };
+      .then((res) => {
+        const data = res.data;
         if (data.login) {
           window.location.href = "/";
         }

@@ -3,7 +3,7 @@ const bcrypt = require("bcrypt");
 const express = require("express");
 const usersController = express.Router();
 
-usersController.post("/sign-in", (req, res) => {
+usersController.post("/sign-in", sessionAuth, (req, res) => {
   const { email, password } = req.body;
 
   userDB.getUser(email).then((response) => {
