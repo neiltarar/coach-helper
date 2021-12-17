@@ -8,6 +8,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import axios from "axios";
+import NotLoggedNavBar from "../components/NotLoggedNavbar";
 import { useState } from "react";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
@@ -56,98 +57,101 @@ export default function SignUp() {
   };
 
   return (
-    <ThemeProvider theme={theme}>
-      <Container component='main' maxWidth='xs'>
-        <CssBaseline />
-        <Box
-          sx={{
-            marginTop: 4,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}>
-          <Typography component='h1' variant='h5'>
-            Sign up
-          </Typography>
+    <>
+      <NotLoggedNavBar />
+      <ThemeProvider theme={theme}>
+        <Container component='main' maxWidth='xs'>
+          <CssBaseline />
           <Box
-            component='form'
-            noValidate
-            onSubmit={handleSubmit}
-            onChange={handleChange}
-            sx={{ mt: 3 }}>
-            <Grid container spacing={2}>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  autoComplete='given-name'
-                  name='firstName'
-                  required
-                  fullWidth
-                  id='firstName'
-                  label='First Name'
-                  autoFocus
-                />
+            sx={{
+              marginTop: 4,
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}>
+            <Typography component='h1' variant='h5'>
+              Sign up
+            </Typography>
+            <Box
+              component='form'
+              noValidate
+              onSubmit={handleSubmit}
+              onChange={handleChange}
+              sx={{ mt: 3 }}>
+              <Grid container spacing={2}>
+                <Grid item xs={12} sm={6}>
+                  <TextField
+                    autoComplete='given-name'
+                    name='firstName'
+                    required
+                    fullWidth
+                    id='firstName'
+                    label='First Name'
+                    autoFocus
+                  />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  <TextField
+                    required
+                    fullWidth
+                    id='lastName'
+                    label='Last Name'
+                    name='lastName'
+                    autoComplete='family-name'
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    required
+                    fullWidth
+                    id='email'
+                    label='Email Address'
+                    name='email'
+                    autoComplete='email'
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    required
+                    fullWidth
+                    name='password'
+                    label='Password'
+                    type='password'
+                    id='password'
+                    autoComplete='new-password'
+                  />
+                </Grid>
               </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  required
+              {signUpComplete ? (
+                <Button
+                  type='submit'
                   fullWidth
-                  id='lastName'
-                  label='Last Name'
-                  name='lastName'
-                  autoComplete='family-name'
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
+                  variant='contained'
+                  sx={{ mt: 3, mb: 2 }}>
+                  Sign Up
+                </Button>
+              ) : (
+                <Button
+                  disabled
+                  type='submit'
                   fullWidth
-                  id='email'
-                  label='Email Address'
-                  name='email'
-                  autoComplete='email'
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  name='password'
-                  label='Password'
-                  type='password'
-                  id='password'
-                  autoComplete='new-password'
-                />
-              </Grid>
-            </Grid>
-            {signUpComplete ? (
-              <Button
-                type='submit'
-                fullWidth
-                variant='contained'
-                sx={{ mt: 3, mb: 2 }}>
-                Sign Up
-              </Button>
-            ) : (
-              <Button
-                disabled
-                type='submit'
-                fullWidth
-                variant='contained'
-                sx={{ mt: 3, mb: 2 }}>
-                Sign Up
-              </Button>
-            )}
+                  variant='contained'
+                  sx={{ mt: 3, mb: 2 }}>
+                  Sign Up
+                </Button>
+              )}
 
-            <Grid container justifyContent='flex-end'>
-              <Grid item>
-                <Link href='/sign-in' variant='body2'>
-                  Already have an account? Sign in
-                </Link>
+              <Grid container justifyContent='flex-end'>
+                <Grid item>
+                  <Link href='/sign-in' variant='body2'>
+                    Already have an account? Sign in
+                  </Link>
+                </Grid>
               </Grid>
-            </Grid>
+            </Box>
           </Box>
-        </Box>
-      </Container>
-    </ThemeProvider>
+        </Container>
+      </ThemeProvider>
+    </>
   );
 }

@@ -8,6 +8,7 @@ import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
 import AddIcon from "../components/AddIcon";
 import DeleteIcon from "../components/DeleteIcon";
+import LoggedNavBar from "../components/LoggedNavBar";
 import SimpleButton from "../components/Button";
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -102,6 +103,7 @@ export default function SessionsTable() {
 
   return (
     <React.Fragment>
+      <LoggedNavBar />
       <Box
         id='main-page'
         display='grid'

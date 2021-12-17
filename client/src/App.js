@@ -1,5 +1,4 @@
 import React from "react";
-import Navbar from "./components/Navbar";
 import { HomePage } from "./pages/HomePage";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
@@ -15,13 +14,13 @@ import "./App.css";
 function App() {
   return (
     <React.Fragment>
-      <Navbar />
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<HomePage />}></Route>
           <Route path='/sign-in' element={<SignIn />}></Route>
           <Route path='/sign-up' element={<SignUp />}></Route>
           <Route path='/sessions' element={<SessionsTable />}></Route>
+          <Route path='/myPage' element={<SessionsTable />}></Route>
         </Routes>
       </BrowserRouter>
       <Copyright sx={{ margin: 4 }} />

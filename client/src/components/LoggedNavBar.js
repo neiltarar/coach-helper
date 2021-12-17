@@ -12,7 +12,7 @@ import MenuItem from "@mui/material/MenuItem";
 
 const pages = ["sessions", "runners"];
 
-const NavBar = () => {
+const LoggedNavBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -85,7 +85,7 @@ const NavBar = () => {
             noWrap
             component='div'
             sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
-            <Button color='inherit' href='/'>
+            <Button color='inherit' href='/myPage'>
               COACH HELPER
             </Button>
           </Typography>
@@ -117,8 +117,8 @@ const NavBar = () => {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}></Menu>
 
-            <Button color='inherit' href='/sign-in'>
-              Sign In
+            <Button color='inherit' href='/'>
+              Log Out
             </Button>
           </Box>
         </Toolbar>
@@ -126,4 +126,4 @@ const NavBar = () => {
     </AppBar>
   );
 };
-export default NavBar;
+export default LoggedNavBar;

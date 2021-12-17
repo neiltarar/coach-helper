@@ -3,6 +3,9 @@ import Box from "@mui/material/Box";
 import { styled } from "@mui/material/styles";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
+import NotLoggedNavBar from "../components/NotLoggedNavbar";
+import LoggedNavBar from "../components/LoggedNavBar";
+// import { GetUserContext, SetUserContext } from "../context/UserContext";
 
 const Heading = styled(Paper)(({ theme }) => ({
   ...theme.typography.button,
@@ -10,9 +13,14 @@ const Heading = styled(Paper)(({ theme }) => ({
   textAlign: "center",
 }));
 
+// const userContext = GetUserContext();
+// const setUserContext = SetUserContext();
+// console.log(userContext.loginStatus);
+
 export function HomePage() {
   return (
     <React.Fragment>
+      <NotLoggedNavBar />
       <Box
         id='main-page'
         display='grid'

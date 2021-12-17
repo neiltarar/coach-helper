@@ -10,8 +10,10 @@ import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-
+import NotLoggedNavBar from "../components/NotLoggedNavbar";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+// import { useContext, useState } from "react";
+import { GetUserContext, SetUserContext } from "../context/UserContext";
 
 const theme = createTheme();
 
@@ -22,6 +24,8 @@ export default function SignIn() {
     const email = data.get("email");
     const password = data.get("password");
 
+    // const userContext = GetUserContext();
+    // const setUserContext = SetUserContext();
     // Send the login information to Express Server
     axios
       .post("http://localhost:3001/api/users/sign-in", {
@@ -31,13 +35,15 @@ export default function SignIn() {
       .then((res) => {
         const data = res.data;
         if (data.login) {
-          window.location.href = "/";
+          // setUserContext({ loginStatus: true });
+          window.location.href = "/myPage";
         }
       });
   };
 
   return (
     <React.Fragment>
+      <NotLoggedNavBar />
       <ThemeProvider theme={theme}>
         <Container component='main' maxWidth='xs'>
           <CssBaseline />
