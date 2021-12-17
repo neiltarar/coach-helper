@@ -22,8 +22,9 @@ trainingSessionsController.post("/add-session", (req, res) => {
 });
 
 trainingSessionsController.delete("/:id/remove", async (req, res) => {
-  const id = req.params.id;
-  trainingSessionsDB.deleteTrainingSession(id);
+  const id = req.params.id.split(",");
+  console.log(id);
+  id.map((session) => trainingSessionsDB.deleteTrainingSession(session));
   res.json({ status: "delete request received" });
 });
 

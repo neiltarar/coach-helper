@@ -193,6 +193,7 @@ export default function SessionsTable() {
         <Grid container spacing={1}>
           <Grid item xs={2}>
             <TextField
+              required
               margin='normal'
               required
               fullWidth
@@ -206,6 +207,7 @@ export default function SessionsTable() {
           </Grid>
           <Grid item xs={2}>
             <TextField
+              required
               margin='normal'
               required
               fullWidth
@@ -219,6 +221,7 @@ export default function SessionsTable() {
           </Grid>
           <Grid item xs={3}>
             <TextField
+              required
               margin='normal'
               required
               fullWidth
@@ -232,6 +235,7 @@ export default function SessionsTable() {
           </Grid>
           <Grid item xs={2}>
             <TextField
+              required
               margin='normal'
               required
               fullWidth
@@ -245,6 +249,7 @@ export default function SessionsTable() {
           </Grid>
           <Grid item xs={3}>
             <TextField
+              required
               margin='normal'
               required
               fullWidth
