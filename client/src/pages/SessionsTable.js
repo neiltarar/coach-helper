@@ -122,7 +122,7 @@ export default function SessionsTable() {
             fontSize={"10pt"}
             component='div'
             gutterBottom>
-            {sessions}
+            hi
           </Typography>
         </Box>
       </Box>
