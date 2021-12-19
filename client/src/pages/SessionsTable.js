@@ -46,7 +46,7 @@ export default function SessionsTable() {
   useEffect(() => {
     async function fetchData() {
       const response = await axios.get(
-        `http://localhost:3001/api/training-sessions`
+        `http://coachhelper.duckdns.org/api/training-sessions`
       );
 
       setTrainingSessions(response.data);
@@ -67,7 +67,7 @@ export default function SessionsTable() {
       location: data.get("location"),
     };
     axios.post(
-      `http://localhost:3001/api/training-sessions/add-session`,
+      `http://coachhelper.duckdns.org/api/training-sessions/add-session`,
       payload
     );
   };
@@ -93,7 +93,7 @@ export default function SessionsTable() {
     const id = deleteID;
     try {
       await axios.delete(
-        `http://localhost:3001/api/training-sessions/${id}/remove`
+        `http://coachhelper.duckdns.org/api/training-sessions/${id}/remove`
       );
       console.log("session removed");
     } catch (error) {

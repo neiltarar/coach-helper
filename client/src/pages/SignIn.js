@@ -28,7 +28,7 @@ export default function SignIn() {
     // const setUserContext = SetUserContext();
     // Send the login information to Express Server
     axios
-      .post("http://localhost:3001/api/users/sign-in", {
+      .post("http://coachhelper.duckdns.org/api/users/sign-in", {
         email: email,
         password: password,
       })

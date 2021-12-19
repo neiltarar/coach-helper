@@ -52,7 +52,8 @@ input[type="date"] {
 }
 
 #rain {
-  background-color: red;
+  background-color: rgb(129, 215, 255);
+  opacity: 0.8;
 }
 
 #check-weather {
