@@ -44,7 +44,7 @@ export default function SignUp() {
     const password = data.get("password");
 
     axios
-      .post("http://coachhelper.duckdns.org/api/sign-in/api/users/sign-up", {
+      .post("http://localhost:3001/api/sign-in/api/users/sign-up", {
         firstName: firstName,
         lastName: lastName,
         email: email,
