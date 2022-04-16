@@ -23,11 +23,12 @@ const specialChar = [
 
 let password = []
 
-for (i = 0; i < 17; i++) {
-    if (i % 2 === 0) {
+for (i = 0; i < 32; i++) {
+    let randNum = Math.floor(Math.random() * 195)
+    if (randNum % 2 === 0) {
         let randNum = Math.floor(Math.random() * alphabet.length)
         randNum % 2 === 0 ? password.push(alphabet[randNum]) : password.push(alphabet[randNum].toUpperCase()) 
-    }else if( i % 3 === 0) {
+    }else if( randNum % 3 === 0) {
         let randNum = Math.floor(Math.random() * numbers.length)
         password.push(numbers[randNum])
     }else{
